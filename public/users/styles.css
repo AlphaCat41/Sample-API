@@ -5,6 +5,24 @@ body {
     align-items: center;
 }
 
+.popup {
+    position: sticky;
+    display: flex;
+    flex-direction: row;
+    background-color: pink;
+    width: 25%;
+    justify-content: center;
+
+    p {
+        text-align: center;
+    }
+
+    button {
+        border-radius: 50%;
+        margin: 7px;
+    }
+}
+
 table {
     border: 1px solid;
 
