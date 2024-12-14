@@ -3,7 +3,8 @@ const router = express.Router()
 const mysql = require('mysql2/promise')
 
 const timeLog = (req, res, next) => {
-    console.log('Time: ', Date.now())
+    const time = new Date()
+    console.log('Time:', time.toUTCString())
     next()
 }
 
@@ -33,13 +34,14 @@ router.get("/:id", async (req, res) => {
 router.post("/delete", async (req, res) => {
     const connection = await dbCon
     await connection.query("DELETE FROM users WHERE id = ?", [req.body.id])
-    res.send("Deleted id " + req.body.id + " successful")
+    // res.send("Deleted id " + req.body.id + " successful")
+    res.redirect("/users")
 })
 router.post("/add", async (req, res) => {
     const connection = await dbCon
-    console.log(req.body)
     await connection.query("INSERT INTO users (firstName, lastName, birthYear, email) VALUES (?)", [[req.body.firstName, req.body.lastName, req.body.birthYear, req.body.email]])
-    res.send("Add user" + req.body.firstName + " successful")
+    // res.send("Add user " + req.body.firstName + " successful")
+    res.redirect("/users")
 })
 
 module.exports = router
